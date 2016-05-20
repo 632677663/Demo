@@ -1,12 +1,12 @@
 create table t_item(
-id bigint(10) not null auto_increment comment '商品id',
+id bigint(20) not null auto_increment comment '商品id',
 title varchar(100) not null comment '商品标题',
 sell_point varchar(150) default null comment '商品卖点',
-price bigint(20) not null comment '商品价格',
+price decimal(11,2) not null comment '商品价格',
 num int(10) not null comment '库存数量',
 barcode varchar(30) default null comment '商品条形码',
 image varchar(500) default null comment '商品图片',
-cid bigint(10) not null comment '所属类目',
+cid bigint(20) not null comment '所属类目',
 status tinyint not null default '1' comment '商品状态:1-正常,2-下架,3-删除',
 created timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
 updated datetime not null comment '更新时间',
@@ -18,7 +18,7 @@ key updated (updated)
 
 
 create table t_item_desc(
-id bigint(10) default null comment '商品id',
+id bigint(20) default null comment '商品id',
 item_desc text comment '商品描述',
 created timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
 updated datetime not null comment '更新时间',
@@ -27,8 +27,8 @@ key (id)
 
 
 create table t_item_param(
-id bigint(10) not null auto_increment comment '商品规则参数id',
-item_cid bigint(10) comment '商品所属类目id',
+id bigint(20) not null auto_increment comment '商品规则参数id',
+item_cid bigint(20) comment '商品所属类目id',
 item_data text comment '商品json格式参数数据',
 created datetime default null comment '创建时间',
 updated datetime default null comment '更新时间',
@@ -38,8 +38,8 @@ key (item_cid)
 
 
 create table t_item_param_relation(
-id bigint(10) not null auto_increment comment 'id',
-item_id bigint(10) comment '商品id',
+id bigint(20) not null auto_increment comment 'id',
+item_id bigint(20) comment '商品id',
 param_data text comment '商品json格式参数数据',
 created timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
 updated datetime default null comment '更新时间',
@@ -99,10 +99,27 @@ item_id bigint(10) not null comment '商品id',
 order_id varchar(50) not null comment '订单id',
 num int(10) not null comment '商品购买数量',
 title varchar(100) not null comment '商品标题',
-price bigint(20) not null comment '商品价格',
+price decimal(11,2) not null comment '商品价格',
 total_fee varchar(20) default null comment '电话号码',
 pic_path varchar(50) default null comment '邮箱',
 created timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
 updated datetime default null comment '更新时间',
 key order_id (order_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单商品表';
+
+
+create table t_cart(
+id bigint(20) not null auto_increment comment 'id',
+user_id bigint(20) default null comment '订单id',
+item_id bigint(20) default null comment '商品id',
+item_title varchar(100) default null comment '商品标题',
+item_image varchar(200) default null comment '商品主图',
+item_price decimal(11,2) default null comment '商品价格',
+num int(5) default null comment '购买数量',
+created timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
+updated datetime default null comment '更新时间',
+primary key (id),
+key userId_itemId (user_id,item_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='购物车表';
+
+
