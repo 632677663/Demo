@@ -143,7 +143,7 @@ CREATE TABLE t_content (
 
 
 DROP TABLE IF EXISTS tb_content_category;
-CREATE TABLE tb_content_category (
+CREATE TABLE t_content_category (
   id bigint(20) NOT NULL AUTO_INCREMENT COMMENT '类目ID',
   parent_id bigint(20) DEFAULT NULL COMMENT '父类目ID=0时，代表的是一级的类目',
   name varchar(50) DEFAULT NULL COMMENT '分类名称',
@@ -158,3 +158,18 @@ CREATE TABLE tb_content_category (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='内容分类';
 
 
+
+CREATE TABLE t_order_shipping (
+  order_id varchar(50) NOT NULL COMMENT '订单ID',
+  receiver_name varchar(20) DEFAULT NULL COMMENT '收货人全名',
+  receiver_phone varchar(20) DEFAULT NULL COMMENT '固定电话',
+  receiver_mobile varchar(30) DEFAULT NULL COMMENT '移动电话',
+  receiver_state varchar(10) DEFAULT NULL COMMENT '省份',
+  receiver_city varchar(10) DEFAULT NULL COMMENT '城市',
+  receiver_district varchar(20) DEFAULT NULL COMMENT '区/县',
+  receiver_address varchar(200) DEFAULT NULL COMMENT '收货地址，如：xx路xx号',
+  receiver_zip varchar(6) DEFAULT NULL COMMENT '邮政编码,如：310001',
+  created timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
+  updated datetime default null comment '更新时间',
+  PRIMARY KEY (order_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单邮寄地址明细';
