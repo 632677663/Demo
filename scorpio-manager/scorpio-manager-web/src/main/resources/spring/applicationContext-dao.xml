@@ -33,8 +33,8 @@
       	 	<property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml" />
       	 </bean>
       	 
-      	 <!-- 扫描basePackage-->
+      	<!-- 扫描basePackage-->
 		<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-			<property name="basePackage" value="com.scorpio.mapper" />
+			<property name="basePackage" value="com.scorpio.dao" />
 		</bean>
 </beans>
