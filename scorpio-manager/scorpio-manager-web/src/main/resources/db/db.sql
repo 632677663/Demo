@@ -189,4 +189,4 @@ CREATE TABLE t_item_cat (
   PRIMARY KEY (id),
   KEY parent_id (parent_id,status) USING BTREE,
   KEY sort_order (sort_order)
-) ENGINE=InnoDB AUTO_INCREMENT=1183 DEFAULT CHARSET=utf8 COMMENT='商品类目';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品类目';
