@@ -16,9 +16,22 @@
 	</resultMap>
 
 	<sql id="Base_Column">
-		id, title, sell_point, price, num, barcode, image, cid, status, created, updated
+		id, title, sell_point, price, num, barcode, image, cid,
+		status, created, updated
 	</sql>
 	<select id="queryList" resultMap="BaseResultMap" parameterType="map">
-		select <include refid="Base_Column"/> from t_item
+		select
+		<include refid="Base_Column" />
+		from t_item
 	</select>
+	<insert id="insert" parameterType="com.scorpio.bean.TItem">
+		insert into t_item (id, title, sell_point,
+		price, num, barcode,
+		image, cid, status ,created)
+		values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR},
+		#{sellPoint,jdbcType=VARCHAR},
+		#{price,jdbcType=DECIMAL}, #{num,jdbcType=INTEGER}, #{barcode,jdbcType=VARCHAR},
+		#{image,jdbcType=VARCHAR}, #{cid,jdbcType=BIGINT},
+		#{status,jdbcType=TINYINT},now())
+	</insert>
 </mapper>

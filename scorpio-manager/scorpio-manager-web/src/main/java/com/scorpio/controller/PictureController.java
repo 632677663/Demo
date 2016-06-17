@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.scorpio.bean.PictrueResult;
 import com.scorpio.service.PictureService;
+import com.scorpio.utils.JsonUtils;
 
 @Controller
 public class PictureController {
@@ -17,8 +18,11 @@ public class PictureController {
     
     @RequestMapping("/pic/upload")
     @ResponseBody
-    public PictrueResult uploadFile(MultipartFile uploadFile){
-        return pictureService.uploadFastDFSPicture(uploadFile);
+    public String uploadFile(MultipartFile uploadFile){
+        
+         PictrueResult result = pictureService.uploadFastDFSPicture(uploadFile);
+         
+         return JsonUtils.objectToJson(result);
     }
 
 }

@@ -9,4 +9,6 @@ public interface TItemDao {
     
     List<TItem> queryList(Map<String, Object> map);
     
+    int insert(TItem item);
+    
 }

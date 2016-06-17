@@ -1,11 +1,13 @@
 package com.scorpio.service;
 
-import java.util.Map;
-
 import org.springframework.web.multipart.MultipartFile;
+
+import com.scorpio.bean.PictrueResult;
 
 public interface PictureService {
 
-    public Map<String, Object> uploadPicture(MultipartFile uploadFile);
+    public PictrueResult uploadFtpPicture(MultipartFile uploadFile);
+    
+    public PictrueResult uploadFastDFSPicture(MultipartFile uploadFile);
     
 }
